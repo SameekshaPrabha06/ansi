@@ -1,14 +1,15 @@
-- name: deloy to tomcat
+- name: Deploy to Tomcat
   hosts: web
-  became: yes
+  become: yes
   tasks:
- 	 - name: copy war to tomcat
- 	   copy:
- 	    src: "/var/snap/jenkins/4865/workspace/ansjenk/target/ansi.war"
- 	    dest: "/opt/tomcat/webapps/ansi.war"
- 	    remote_src: no
- 	 
- 	 - name: restart tomcat
- 	   systemd:
- 	     name: tomcat
- 	     state: restarted
+    - name: Copy WAR to Tomcat
+      copy:
+        src: "/var/snap/jenkins/4865/workspace/ansjenk/target/ansi.war"
+        dest: "/opt/tomcat/webapps/ansi.war"
+        remote_src: no
+
+    - name: Restart Tomcat
+      systemd:
+        name: tomcat
+        state: restarted
+
